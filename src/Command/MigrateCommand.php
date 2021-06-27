@@ -94,7 +94,7 @@ class MigrateCommand extends Command
             $uuid = $meta['uploadcare_uuid']['meta_value'] ?? null;
 
             if (!empty($uuid)) {
-                $this->logger->info(\sprintf('Seems like Post <info>%s</info> already transferred. Uploadcare UUID is %s, skipping', $id, $uuid));
+                $this->logger->info(\sprintf('Seems like Post \'%s\' already transferred. Uploadcare UUID is %s, skipping', $id, $uuid));
                 continue;
             }
 
@@ -124,14 +124,14 @@ class MigrateCommand extends Command
                 $q = $this->connection->prepare($sql);
                 $q->bindValue('id', $metaId);
 
-                $this->logger->info(\sprintf('Update meta <info>%s</info> id %d with value <info>%s</info> with sql %s', $metaKey, $metaId, $value ?? 'null', $sql));
+                $this->logger->info(\sprintf('Update meta \'%s\' id %d with value \'%s\' with sql %s', $metaKey, $metaId, $value ?? 'null', $sql));
             } else {
                 $sql = \sprintf('INSERT INTO %s VALUES (null, :post_id, :key, :val)', $tn);
                 $q = $this->connection->prepare($sql);
                 $q->bindValue('key', $metaKey);
                 $q->bindValue('post_id', $postId);
 
-                $this->logger->info(\sprintf('Insert meta <info>%s</info> with post_id %d and value <info>%s</info> with sql %s', $metaKey, $postId, $value ?? 'null', $sql));
+                $this->logger->info(\sprintf('Insert meta \'%s\' with post_id %d and value \'%s\' with sql %s', $metaKey, $postId, $value ?? 'null', $sql));
             }
             $q->bindValue('val', $value);
 
@@ -197,7 +197,7 @@ class MigrateCommand extends Command
 
         $count = $q->rowCount();
 
-        $this->logger->info(\sprintf('Attachments count: <info>%d</info>', $count));
+        $this->logger->info(\sprintf('Attachments count: \'%d\'', $count));
     }
 
     private function getAttachments(string $select = '*'): Statement

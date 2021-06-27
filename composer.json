@@ -28,6 +28,7 @@
   },
   "bin": ["migrate"],
   "require-dev": {
-    "symfony/var-dumper": "^4.4"
+    "symfony/var-dumper": "^4.4",
+    "phpunit/phpunit": "^7.5"
   }
 }

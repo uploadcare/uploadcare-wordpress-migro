@@ -1,3 +1,4 @@
 Dockerfile
 phar-composer.phar
 vendor
+tests
