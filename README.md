@@ -21,10 +21,16 @@ Usage
     - `<db_port>` — database port. Optional, default `3306`;
     - `<db_driver>` — php database driver. Optional, default `pdo_mysql`;
 
+Example:
+
+```shell
+./wp-migrate.phar wp_database admin admin_password demopublickey demosecretkey wp_ 127.0.0.1
+```
+
 During command run you will see log messages with transfer report. For example:
 
 ```shell
-> $ ./wp-migrate.phar wordpress_db wp_user wp_user_password de2dfdecfecdb3bfa507 f8c4541f8f2f1a765c64 wp_ 127.0.0.1
+> $ ./wp-migrate.phar wordpress_db wp_user wp_user_password demopublickey demosecretkey wp_ 127.0.0.1
 [2021-06-27 08:08:53] console.INFO: Attachments count: '1013' [] []
 [2021-06-27 08:08:53] console.INFO: Seems like Post '26' already transferred. Uploadcare UUID is 69c88248-09c0-42ed-9cce-8a8994e07ca4, skipping [] []
 [2021-06-27 08:08:53] console.INFO: Seems like Post '27' already transferred. Uploadcare UUID is 69c88248-09c0-42ed-9cce-8a8994e07ca4, skipping [] []
