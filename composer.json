@@ -1,0 +1,33 @@
+{
+  "name": "uploadcare/wp-migrate-lite",
+  "description": "Migrate Wordpress photos and files to Uploadcare",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Andrew Zhdanovskih",
+      "email": "andrew72ru@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": "^7.1",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-dom": "*",
+    "symfony/console": "^4.4",
+    "symfony/yaml": "^4.4",
+    "doctrine/dbal": "^2.13",
+    "uploadcare/uploadcare-php": "^3.1",
+    "monolog/monolog": "^1.26"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Uploadcare\\WpMigrate\\": "src/"
+    }
+  },
+  "bin": ["migrate"],
+  "require-dev": {
+    "symfony/var-dumper": "^4.4"
+  }
+}

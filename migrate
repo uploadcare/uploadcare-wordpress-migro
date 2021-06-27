@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Symfony\Component\Console\Application;
+use Uploadcare\WpMigrate\Command\MigrateCommand;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$app = new Application('wp-migrate', '1.0.0');
+$logger = new Logger('console');
+$stdoutHandler = new StreamHandler(STDOUT, Logger::DEBUG);
+$stderrHandler = new StreamHandler(STDERR, Logger::WARNING);
+$logger->pushHandler($stdoutHandler)->pushHandler($stderrHandler);
+
+$command = new MigrateCommand($logger);
+$app->add($command);
+$app->setDefaultCommand($command->getName(), true);
+
+$app->run();
