@@ -1,25 +1,31 @@
-Wordpress files migration tool
+WordPress file migration tool
 ==============================
 
-Console tool for migrate files and images from local wordpress `upload` directory to uploadcare. Php versions above 7.1 are supported.
+A console tool that migrates files and images from the local WordPress `upload`
+directory to Uploadcare.
+
+Requirements
+-----
+
+- PHP 7.1 and above
 
 Usage
 -----
 
-- backup your database;
-- login to your wordpress host over ssh;
-- download phar: `curl -OL https://raw.githubusercontent.com/uploadcare/uploadcare-wordpress-migro/main/wp-migrate.phar`
-- add execution permission: `chmod +x wp-migrate.phar`
-- run command `./wp-migrate.phar <dbname> <db_username> <db_password> <uploadcare_public_key> <uploadcare_secret_key> [<table_prefix> [<db_host> [<db_port> [<db_driver>]]]]` where:
-    - `<dbname>` — name of your wordpress database;
-    - `<db_username>` — username for wordpress database;
-    - `<db_password>` — password for database user;
-    - `<uploadcare_public_key>` — your Uploadcare project public key;
-    - `<uploadcare_secret_key>` — your Uploadcare secret key;
-    - `<table_prefix>` — table prefix for database tables. Optional, default `null`;
-    - `<db_host>` — database host. Optional, default `localhost`;
-    - `<db_port>` — database port. Optional, default `3306`;
-    - `<db_driver>` — php database driver. Optional, default `pdo_mysql`;
+- Backup your database
+- Login to your WordPress host over `ssh`
+- Download phar: `curl -OL https://raw.githubusercontent.com/uploadcare/uploadcare-wordpress-migro/main/wp-migrate.phar`
+- Add execution permission: `chmod +x wp-migrate.phar`
+- Run command `./wp-migrate.phar <dbname> <db_username> <db_password> <uploadcare_public_key> <uploadcare_secret_key> [<table_prefix> [<db_host> [<db_port> [<db_driver>]]]]` where:
+    - `<dbname>` — the name of your WordPress database
+    - `<db_username>` — a username to access the WordPress database
+    - `<db_password>` — a password for the database user
+    - `<uploadcare_public_key>` — your Uploadcare project's Public API key
+    - `<uploadcare_secret_key>` — your Uploadcare project's Secret API key
+    - `<table_prefix>` — a table prefix for database tables (optional, default is `null`)
+    - `<db_host>` — a database host (optional, default is `localhost`)
+    - `<db_port>` — a database port (optional, default is `3306`)
+    - `<db_driver>` — a PHP database driver (optional, default is `pdo_mysql`)
 
 Example:
 
@@ -27,7 +33,7 @@ Example:
 ./wp-migrate.phar wp_database admin admin_password demopublickey demosecretkey wp_ 127.0.0.1
 ```
 
-During command run you will see log messages with transfer report. For example:
+While the command is running, you'll see log messages with transfer report. For example:
 
 ```shell
 > $ ./wp-migrate.phar wordpress_db wp_user wp_user_password demopublickey demosecretkey wp_ 127.0.0.1
@@ -58,16 +64,16 @@ During command run you will see log messages with transfer report. For example:
 
 ### Attention!
 
-This program **will not** change your posts content. All `src` attributes of images in posts will stay as is! 
-Images in user-part of wordpress site will be changed "on the fly", but only if you use wordress theme with wordpress Gutenberg blocks and adaptive delivery in plugin settings is on.
+This program **will not** change your posts content. All `src` image attributes will stay unchanged.
+Images in the user-part of a WordPress site will be changed on the fly. The only requirement is that you use WordPress Gutenberg blocks and an Adaptive Delivery in Uploadcare plugin's settings is on.
 
 ## Development
 
-This is a Symfony single-command application, uses a doctrine/dbal for database interaction. All application logic is in `Uploadcare\WpMigrate\Command\MigrateCommand` class.
+This is a Symfony single-command application, it uses a `doctrine/dbal` for database interaction. All application logic is in the `Uploadcare\WpMigrate\Command\MigrateCommand` class.
 
-To make new phar-archive (in case you changed something) download [Phar-composer](https://github.com/clue/phar-composer) package phar archive: `curl -JOL https://clue.engineering/phar-composer-latest.phar`. 
+To make a new PHP archive (in case you changed something), download [phar-composer](https://github.com/clue/phar-composer). Create the phar: `curl -JOL https://clue.engineering/phar-composer-latest.phar`. 
 
-Build command is
+Build:
 
 ```shell
 php -d phar.readonly=0 ./phar-composer.phar build . wp-migrate.phar
@@ -75,4 +81,4 @@ php -d phar.readonly=0 ./phar-composer.phar build . wp-migrate.phar
 
 ### Tests
 
-All tests are for decrease PHAR size. Make your own by necessary.
+All tests are meant to decrease the phar size. Add your own if necessary.
