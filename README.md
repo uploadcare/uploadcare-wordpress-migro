@@ -71,7 +71,7 @@ Images in the user-part of a WordPress site will be changed on the fly. The only
 
 This is a Symfony single-command application, it uses a `doctrine/dbal` for database interaction. All application logic is in the `Uploadcare\WpMigrate\Command\MigrateCommand` class.
 
-To make a new PHP archive (in case you changed something), download [phar-composer](https://github.com/clue/phar-composer). Create the phar: `curl -JOL https://clue.engineering/phar-composer-latest.phar`. 
+To make phar archives (in case you changed something), download [phar-composer](https://github.com/clue/phar-composer). Create a new phar archive: `curl -JOL https://clue.engineering/phar-composer-latest.phar`. 
 
 Build:
 
